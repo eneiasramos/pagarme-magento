@@ -23,5 +23,17 @@ public function toOptionArray ()
     return $options;
 }
 
+public function toArray ()
+{
+    $result = array ();
+    
+    foreach ($this->toOptionArray () as $child)
+    {
+        $result[$child['value']] = Mage::helper('pagarme')->__($child['label']);
+    }
+
+    return $result;
+}
+
 }
 

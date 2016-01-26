@@ -293,7 +293,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </order_status>
-
+                        <payment_action translate="label">
+                            <label>Payment Action</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pagarme/source_paymentAction</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </payment_action>
                         <payment_method translate="label">
                             <label>Payment Method</label>
                             <frontend_type>multiselect</frontend_type>
@@ -408,6 +416,34 @@
                         </sort_order>
                     </fields>
                 </pagarme_checkout>
+                <pagarme_subscriptions translate="label" module="pagarme">
+                    <label>Pagar.me - Subscriptions</label>
+                    <sort_order>104</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[<a href="http://www.gamuza.com.br" target="_blank"><img title="Gamuza Technologies" alt="Gamuza Technologies" src="http://www.gamuza.com.br/img/gamuza/logo.png" /></a>]]></comment>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <allow_multiples translate="label">
+                            <label>Allow Multiples</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow_multiples>
+                    </fields>
+                </pagarme_subscriptions>
             </groups>
         </payment>
     </sections>

@@ -102,5 +102,17 @@
 			<block type="pagarme/adminhtml_transaction_view" name="pagarme.transaction.view" template="pagarme/transaction/view.phtml"></block>
         </reference>
     </adminhtml_pagarme_transaction_view>
+
+    <pagarme_adminhtml_plans_index>
+        <reference name="content">
+            <block type="pagarme/adminhtml_plans" name="pagarme.adminhtml.plans" />
+        </reference>
+    </pagarme_adminhtml_plans_index>
+
+    <pagarme_adminhtml_subscriptions_index>
+        <reference name="content">
+            <block type="pagarme/adminhtml_subscriptions" name="pagarme.adminhtml.subscriptions" />
+        </reference>
+    </pagarme_adminhtml_subscriptions_index>
 </layout>
 

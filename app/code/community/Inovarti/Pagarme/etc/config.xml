@@ -15,7 +15,7 @@
 <config>
     <modules>
         <Inovarti_Pagarme>
-            <version>0.1.1</version>
+            <version>0.1.2</version>
         </Inovarti_Pagarme>
     </modules>
     <global>
@@ -37,13 +37,28 @@
     	<models>
     		<pagarme>
                 <class>Inovarti_Pagarme_Model</class>
+                <resourceModel>pagarme_mysql4</resourceModel>
             </pagarme>
+            <pagarme_libs>
+                <class>Inovarti_Pagarme_libs_Pagarme</class>
+            </pagarme_libs>
+            <pagarme_mysql4>
+                <class>Inovarti_Pagarme_Model_Mysql4</class>
+                <entities>
+                    <plans>
+                        <table>pagarme_subscription_plans</table>
+                    </plans>
+                    <subscriptions>
+                        <table>pagarme_subscription_transactions</table>
+                    </subscriptions>
+                </entities>
+            </pagarme_mysql4>
     	</models>
     	<resources>
             <pagarme_setup>
                 <setup>
                     <module>Inovarti_Pagarme</module>
-                    <class>Mage_Sales_Model_Resource_Setup</class>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
                 </setup>
                 <connection>
                     <use>core_setup</use>
@@ -160,6 +175,23 @@
                 </observers>
             </sales_order_creditmemo_refund>
         </events>
+        <eav_attributes>
+            <catalog_product>
+                <pagarme_subscription_plan>
+                    <code>pagarme_subscription_plan</code>
+                    <locked_fields />
+                </pagarme_subscription_plan>
+            </catalog_product>
+        </eav_attributes>
+        <sales>
+            <quote>
+                <item>
+                    <product_attributes>
+                        <pagarme_subscription_plan />
+                    </product_attributes>
+                </item>
+            </quote>
+        </sales>
     </global>
     <frontend>
         <routers>
@@ -281,6 +313,12 @@
                 <sort_order>3</sort_order>
                 <group>pagarme</group>
             </pagarme_checkout>
+            <!--
+            <pagarme_subscriptions>
+                <active>1</active>
+                <allow_multiples>1</allow_multiples>
+            </pagarme_subscriptions>
+            -->
         </payment>
     </default>
 </config>

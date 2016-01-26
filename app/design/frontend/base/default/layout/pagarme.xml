@@ -16,7 +16,7 @@
 <layout>
 	<pagarme_checkout_handle>
 		<reference name="head">
-			<action method="addCss" ifconfig="payment/pagarme_cc/active"><stylesheet>pagarme/css/styles.css</stylesheet></action>
+			<action method="addCss" ifconfig="payment/pagarme_settings/active"><stylesheet>pagarme/css/styles.css</stylesheet></action>
 		</reference>
         <reference name="after_body_start">
             <block type="core/template" name="pagarme_checkout_loader">

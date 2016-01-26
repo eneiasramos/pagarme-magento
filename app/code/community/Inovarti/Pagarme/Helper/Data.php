@@ -13,6 +13,8 @@
 
 class Inovarti_Pagarme_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    const SUBSCRIPTION_PLAN_ATTRIBUTE_CODE = 'pagarme_subscription_plan';
+
 	public function getOrderIdByTransactionId($tid)
 	{
 		$resource = Mage::getSingleton('core/resource');

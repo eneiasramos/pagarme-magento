@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @copyright   Copyright (C) 2015 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author     Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+<config>
+    <menu>
+        <pagarme module="pagarme">
+            <title>Pagarme</title>
+            <sort_order>100</sort_order>
+            <children>
+                <plans module="pagarme">
+                    <title>Manage Plans</title>
+                    <sort_order>0</sort_order>
+                    <action>pagarme/adminhtml_plans</action>
+                </plans>
+                <subscriptions module="pagarme">
+                    <title>Manage Subscriptions</title>
+                    <sort_order>1</sort_order>
+                    <action>pagarme/adminhtml_subscriptions</action>
+                </subscriptions>
+            </children>
+        </pagarme>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <pagarme translate="title" module="pagarme">
+                        <title>Pagarme</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            <plans translate="title">
+                                <title>Manage Plans</title>
+                                <sort_order>0</sort_order>
+                            </plans>
+                            <subscriptions translate="title">
+                                <title>Manage Subscriptions</title>
+                                <sort_order>1</sort_order>
+                            </subscriptions>
+                        </children>
+                    </pagarme>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
+
