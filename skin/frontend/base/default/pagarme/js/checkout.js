@@ -99,8 +99,6 @@ if (typeof OSCPayment !== "undefined") {
     OSCPayment.savePayment = function() {
         console.log('Pagarme: savePayment');
 
-        OSCForm.disablePlaceOrderButton ();
-
         if (OSCForm.validate()/* always returns true(!) */) {
             if (OSCPayment.currentMethod == 'pagarme_cc') {
                 /*
@@ -118,6 +116,8 @@ if (typeof OSCPayment !== "undefined") {
 
                     return;
                 }
+
+                OSCForm.disablePlaceOrderButton ();
 
                 $('pagarme-cardhash-success').hide();
                 $('pagarme-cardhash-waiting').show();
