@@ -4,39 +4,109 @@
  * @author     Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-/* @var $installer Mage_Sales_Model_Resource_Setup */
-$installer = $this;
+$installer = new Mage_Sales_Model_Resource_Setup();
 $installer->startSetup();
 
-$installer->run("
-    ALTER TABLE " . $this->getTable('sales/quote_address') . " ADD fee_amount DECIMAL(10, 2) NOT NULL;
-    ALTER TABLE " . $this->getTable('sales/quote_address') . " ADD base_fee_amount DECIMAL(10, 2) NOT NULL;
-");
+function addFeeColumns ($installer)
+{
+    $table = $installer->getTable ('sales/quote_address');
+    
+    $installer->getConnection ()
+        ->addColumn ($table, 'fee_amount', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Fee Amount',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'base_fee_amount', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Base Fee Amount',
+        ));
 
-$installer->run("
-    ALTER TABLE " . $this->getTable('sales/order') . " ADD fee_amount DECIMAL(10,2) NOT NULL;
-    ALTER TABLE " . $this->getTable('sales/order') . " ADD base_fee_amount DECIMAL(10,2) NOT NULL;
-");
+    $table = $installer->getTable ('sales/order');
+    
+    $installer->getConnection ()
+        ->addColumn ($table, 'fee_amount', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Fee Amount',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'base_fee_amount', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Base Fee Amount',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'fee_amount_invoiced', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Fee Amount Invoiced',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'base_fee_amount_invoiced', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Base Fee Amount Invoiced',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'fee_amount_refunded', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Fee Amount Refunded',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'base_fee_amount_refunded', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Base Fee Amount Refunded',
+        ));
 
-$installer->run("
-    ALTER TABLE  " . $this->getTable('sales/order') . " ADD fee_amount_invoiced DECIMAL(10, 2) NOT NULL;
-    ALTER TABLE  " . $this->getTable('sales/order') . " ADD base_fee_amount_invoiced DECIMAL(10, 2) NOT NULL;
-");
+    $table = $installer->getTable ('sales/invoice');
+    
+    $installer->getConnection ()
+        ->addColumn ($table, 'fee_amount', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Fee Amount',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'base_fee_amount', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Base Fee Amount',
+        ));
 
-$installer->run("
-    ALTER TABLE " . $this->getTable('sales/order') . " ADD fee_amount_refunded DECIMAL(10, 2) NOT NULL;
-    ALTER TABLE " . $this->getTable('sales/order') . " ADD base_fee_amount_refunded DECIMAL(10, 2) NOT NULL;
-");
+    $table = $installer->getTable ('sales/creditmemo');
+    
+    $installer->getConnection ()
+        ->addColumn ($table, 'fee_amount', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Fee Amount',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'base_fee_amount', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment' => 'Base Fee Amount',
+        ));
+}
 
-$installer->run("
-    ALTER TABLE  " . $this->getTable('sales/invoice') . " ADD fee_amount DECIMAL(10, 2) NOT NULL;
-    ALTER TABLE  " . $this->getTable('sales/invoice') . " ADD base_fee_amount DECIMAL(10, 2) NOT NULL;
-");
-
-$installer->run("
-    ALTER TABLE " . $this->getTable('sales/creditmemo') . " ADD fee_amount DECIMAL(10, 2) NOT NULL;
-    ALTER TABLE " . $this->getTable('sales/creditmemo') . " ADD base_fee_amount DECIMAL(10, 2) NOT NULL;
-");
+addFeeColumns ($installer);
 
 $installer->endSetup();
 

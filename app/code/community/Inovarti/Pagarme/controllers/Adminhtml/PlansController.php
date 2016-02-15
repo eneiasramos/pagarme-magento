@@ -93,7 +93,6 @@ public function saveAction()
         $api_key = Mage::getStoreConfig('payment/pagarme_settings/apikey_' . $api_mode);
         Pagarme::setApiKey($api_key);
 
-        $post_data['payment_methods'] = implode(',', $post_data['payment_methods']);
         $post_data['trial_days'] = '0'; // Always OFF.
 
 		try
@@ -104,6 +103,7 @@ public function saveAction()
             $result = $plan->create();
 
             $post_data['remote_id'] = $result['id'];
+            $post_data['payment_methods'] = implode(',', $post_data['payment_methods']);
             if(empty($post_data['charges'])) $post_data['charges'] = new Zend_Db_Expr('NULL');
 
 			$model = Mage::getModel("pagarme/plans")

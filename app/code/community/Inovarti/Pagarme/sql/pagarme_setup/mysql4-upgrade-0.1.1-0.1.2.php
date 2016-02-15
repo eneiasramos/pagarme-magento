@@ -4,11 +4,10 @@
  * @author     Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-/* @var $installer Mage_Sales_Model_Resource_Setup */
-$installer = $this;
+$installer = new Mage_Catalog_Model_Resource_Setup();
 $installer->startSetup();
 
-if (!$this->getAttribute(Mage_Catalog_Model_Product::ENTITY, 'pagarme_subscription_plan', 'attribute_id'))
+if (!$installer->getAttribute(Mage_Catalog_Model_Product::ENTITY, 'pagarme_subscription_plan', 'attribute_id'))
 {
     $installer->addAttribute(
         Mage_Catalog_Model_Product::ENTITY,
@@ -104,83 +103,6 @@ if (!$this->getAttribute(Mage_Catalog_Model_Product::ENTITY, 'pagarme_subscripti
             );
         }
     }
-}
-
-if (!$this->getAttribute(Mage_Sales_Model_Order::ENTITY, 'pagarme_subscription_id', 'attribute_id'))
-{
-    $installer->addAttribute(
-        Mage_Sales_Model_Order::ENTITY,
-        'pagarme_subscription_id',
-        array(
-            'type'             => 'varchar',
-            'input'            => 'text',
-            'backend'          => '',
-            'frontend'         => '',
-            'label'            => 'Id da Assinatura Pagarme',
-            'class'            => '',
-            'global'           => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-            'visible'          => false,
-            'required'         => false,
-            'user_defined'     => false,
-            'default'          => '',
-            'searchable'       => false,
-            'filterable'       => false,
-            'comparable'       => false,
-            'visible_on_front' => false,
-            'unique'           => false,
-        )
-    );
-}
-
-if (!$this->getAttribute(Mage_Sales_Model_Order::ENTITY, 'pagarme_subscription_period', 'attribute_id'))
-{
-    $installer->addAttribute(
-        Mage_Sales_Model_Order::ENTITY,
-        'pagarme_subscription_period',
-        array(
-            'type'             => 'varchar',
-            'input'            => 'text',
-            'backend'          => '',
-            'frontend'         => '',
-            'label'            => 'Período da Assinatura Pagarme',
-            'class'            => '',
-            'global'           => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-            'visible'          => false,
-            'required'         => false,
-            'user_defined'     => false,
-            'default'          => '',
-            'searchable'       => false,
-            'filterable'       => false,
-            'comparable'       => false,
-            'visible_on_front' => false,
-            'unique'           => false,
-        )
-    );
-}
-
-if (!$this->getAttribute(Mage_Sales_Model_Order::ENTITY, 'pagarme_bill_id', 'attribute_id')) {
-    $installer->addAttribute(
-        Mage_Sales_Model_Order::ENTITY,
-        'pagarme_bill_id',
-        array(
-            'type'             => 'varchar',
-            'input'            => 'text',
-            'backend'          => '',
-            'frontend'         => '',
-            'label'            => 'Id da Fatura Pagarme (vendas avulsas)',
-            'class'            => '',
-            'global'           => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-            'visible'          => false,
-            'required'         => false,
-            'user_defined'     => false,
-            'default'          => '',
-            'searchable'       => false,
-            'filterable'       => false,
-            'comparable'       => false,
-            'visible_on_front' => false,
-            'unique'           => false,
-        )
-    );
 }
 
 function addSubscriptionPlans ($installer)
@@ -339,6 +261,27 @@ SQLBLOCK;
             'length' => 255,
             'nullable' => false,
             'comment' => 'TID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'boleto_url', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_TEXT,
+            // 'length' => 255,
+            'nullable' => true,
+            'comment' => 'Boleto URL',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'boleto_barcode', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_TEXT,
+            // 'length' => 255,
+            'nullable' => true,
+            'comment' => 'Boleto Barcode',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'boleto_expiration_date', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_TEXT,
+            // 'length' => 255,
+            'nullable' => true,
+            'comment' => 'Boleto Expiration Date',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'status', array(

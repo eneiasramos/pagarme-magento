@@ -58,7 +58,6 @@
             <pagarme_setup>
                 <setup>
                     <module>Inovarti_Pagarme</module>
-                    <class>Mage_Catalog_Model_Resource_Setup</class>
                 </setup>
                 <connection>
                     <use>core_setup</use>

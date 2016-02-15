@@ -4,10 +4,14 @@
  * @category   Inovarti
  * @package    Inovarti_Pagarme
  * @author     Suporte <suporte@inovarti.com.br>
+ *
+ * UPDATED:
+ *
+ * @copyright   Copyright (C) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author     Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-/* @var $installer Mage_Sales_Model_Resource_Setup */
-$installer = $this;
+$installer = new Mage_Sales_Model_Resource_Setup();
 $installer->startSetup();
 
 // Quote Payment
@@ -39,3 +43,4 @@ foreach ($attributes as $attribute => $options) {
 }
 
 $installer->endSetup();
+

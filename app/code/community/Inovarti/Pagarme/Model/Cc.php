@@ -195,6 +195,7 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
 
             $subscription = new PagarMe_Subscription(array(
                 'plan' => PagarMe_Plan::findById($_plan->getRemoteId()),
+                'payment_method' => 'credit_card',
                 'card_hash' => $card_hash,
                 'customer' => array(
                     'email' => $customer_email
