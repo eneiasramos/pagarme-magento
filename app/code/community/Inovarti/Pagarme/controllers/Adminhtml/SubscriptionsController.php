@@ -12,7 +12,7 @@ extends Mage_Adminhtml_Controller_Action
 
 protected function _initAction()
 {
-	$this->loadLayout()->_setActiveMenu("pagarme/subscriptions")->_addBreadcrumb(Mage::helper("adminhtml")->__("Subscriptions  Manager"),Mage::helper("adminhtml")->__("Subscriptions Manager"));
+	$this->loadLayout()->_setActiveMenu("pagarme/subscriptions")->_addBreadcrumb(Mage::helper("adminhtml")->__("Subscriptions Manager"),Mage::helper("adminhtml")->__("Subscriptions Manager"));
 
 	return $this;
 }
@@ -20,7 +20,7 @@ protected function _initAction()
 public function indexAction() 
 {
     $this->_title($this->__("Pagarme"));
-    $this->_title($this->__("Manager Subscriptions"));
+    $this->_title($this->__("Manage Subscriptions"));
 
 	$this->_initAction();
 	$this->renderLayout();

@@ -433,6 +433,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </active>
+                        <!--
                         <allow_multiples translate="label">
                             <label>Allow Multiples</label>
                             <frontend_type>select</frontend_type>
@@ -442,6 +443,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </allow_multiples>
+                        -->
                     </fields>
                 </pagarme_subscriptions>
             </groups>

@@ -12,7 +12,7 @@ extends Mage_Adminhtml_Controller_Action
 
 protected function _initAction()
 {
-	$this->loadLayout()->_setActiveMenu("pagarme/plans")->_addBreadcrumb(Mage::helper("adminhtml")->__("Plans  Manager"),Mage::helper("adminhtml")->__("Plans Manager"));
+	$this->loadLayout()->_setActiveMenu("pagarme/plans")->_addBreadcrumb(Mage::helper("adminhtml")->__("Plans Manager"),Mage::helper("adminhtml")->__("Plans Manager"));
 
 	return $this;
 }
