@@ -10,10 +10,12 @@ class Inovarti_Pagarme_Model_Source_Checkout_Paymentmethod
 public function toOptionArray ()
 {
     $options = array(
+        /*
         array(
             'value' => 'boleto',
             'label' => __('Boleto'),
         ),
+        */
         array(
             'value' => 'credit_card',
             'label' => __('Credit Card'),

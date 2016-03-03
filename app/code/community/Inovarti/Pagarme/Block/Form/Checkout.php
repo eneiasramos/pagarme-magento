@@ -74,6 +74,21 @@ public function _getTelephone ($start, $length)
     return $this->_getHelper ()->_iSubstr ($this->_getHelper ()->_numberOnly ($this->_getAddressData ('telephone')), $start, $length);
 }
 
+public function _getCardBrands ($cctypes)
+{
+    $types = explode (',', $this->_getInfoData ($cctypes));
+    
+    $model = Mage::getModel ('pagarme/source_cctype');
+    
+    $result = null;
+    foreach ($types as $value)
+    {
+        $result [] = $model->getBrandByType ($value);
+    }
+    
+    return implode (',', $result);
+}
+
 public function _getHelper ()
 {
     return $this->helper ('pagarme');

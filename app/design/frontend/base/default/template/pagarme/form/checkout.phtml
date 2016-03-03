@@ -44,7 +44,7 @@ $("pagarme-checkout-button").observe ("click", function (event){
     checkout.open({
         "amount" : "<?php echo $this->_getAmount (); ?>",
         "paymentMethods" : "<?php echo $this->_getInfoData ('payment_method'); ?>",
-        "cardBrands" : "<?php echo $this->_getInfoData ('cctypes'); ?>",
+        "cardBrands" : "<?php echo $this->_getCardBrands ('cctypes'); ?>",
         "maxInstallments" : "<?php echo $this->_getInfoData ('max_installments'); ?>",
         "interestRate": "<?php echo $this->_getInfoData ('interest_rate'); ?>",
         "freeInstallments": "<?php echo $this->_getInfoData ('free_installments'); ?>",
