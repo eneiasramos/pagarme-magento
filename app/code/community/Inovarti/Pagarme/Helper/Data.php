@@ -27,6 +27,18 @@ class Inovarti_Pagarme_Helper_Data extends Mage_Core_Helper_Abstract
 		return $conn->fetchOne($select);
 	}
 
+	public function getOrderIdBySubscriptionId($tid)
+	{
+		$resource = Mage::getSingleton('core/resource');
+		$conn = $resource->getConnection('core_read');
+		$select = $conn->select()
+			->from($resource->getTableName('sales/order_payment'))
+			->where('pagarme_subscription_id = ?', $tid)
+			->reset (Zend_Db_Select::COLUMNS)
+			->columns ('parent_id');
+		return $conn->fetchOne($select);
+	}
+
 	public function formatAmount($amount)
 	{
 		return number_format($amount, 2, '', '');

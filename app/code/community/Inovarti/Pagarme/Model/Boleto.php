@@ -115,7 +115,10 @@ class Inovarti_Pagarme_Model_Boleto extends Mage_Payment_Model_Method_Abstract
             $result = $subscription->current_transaction;
 
             $transaction = Mage::getModel('pagarme/subscriptions')
-                ->setRemoteId($result->getId())
+                ->setPlanId($_plan->getId())
+                ->setRemotePlanId($_plan->getRemoteId())
+                ->setRemoteId($subscription->getId())
+                ->setTransactionId($result->getId())
                 ->setOrderId($payment->getOrder()->getId())
                 ->setPaymentMethod($result->getPaymentMethod())
                 ->setAmount(intval($result->getAmount()) / 100)
@@ -131,7 +134,8 @@ class Inovarti_Pagarme_Model_Boleto extends Mage_Payment_Model_Method_Abstract
         }
 
 		// pagar.me info
-		$payment->setPagarmeTransactionId($result->getId())
+		$payment->setPagarmeSubscriptionId($subscription->getId())
+			->setPagarmeTransactionId($result->getId())
 			->setPagarmeBoletoUrl($result->getBoletoUrl()) // PS: Pagar.me in test mode always returns NULL
 			->setPagarmeBoletoBarcode($result->getBoletoBarcode())
 			->setPagarmeBoletoExpirationDate($result->getBoletoExpirationDate());

@@ -200,11 +200,32 @@ SQLBLOCK;
     $installer->run ($sqlBlock);
 
     $installer->getConnection ()
+        ->addColumn ($table, 'plan_id', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length' => 255,
+            'nullable' => false,
+            'comment' => 'Plan Id',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'remote_plan_id', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length' => 255,
+            'nullable' => false,
+            'comment' => 'Remote Plan Id',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'remote_id', array(
             'type' => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length' => 255,
             'nullable' => false,
             'comment' => 'Remote Id',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'transaction_id', array(
+            'type' => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length' => 255,
+            'nullable' => false,
+            'comment' => 'Transaction ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'order_id', array(

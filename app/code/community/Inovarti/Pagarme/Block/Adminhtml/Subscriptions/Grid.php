@@ -26,7 +26,7 @@ protected function _prepareCollection()
     $collection->getSelect()->join(
         array('sfo' => $sfo),
         'main_table.order_id = sfo.entity_id',
-        array('increment_id')
+        array('increment_id', 'order_status' => 'sfo.status')
     );
 	$this->setCollection($collection);
 
@@ -49,6 +49,13 @@ protected function _prepareColumns()
         "type" => "number",
 	    "index" => "remote_id",
 	));
+	$this->addColumn("transaction_id", array(
+	    "header" => Mage::helper("pagarme")->__("Transaction ID"),
+	    "align" => "right",
+	    "width" => "50px",
+        "type" => "number",
+	    "index" => "transaction_id",
+	));
 	$this->addColumn("increment_id", array(
 	    "header" => Mage::helper("pagarme")->__("Order Increment ID"),
 	    "align" => "right",
@@ -61,7 +68,7 @@ protected function _prepareColumns()
 	    "align" => "right",
 	    "index" => "payment_method",
         "type"  => "options",
-        "options" => Mage::getModel('pagarme/source_checkout_paymentmethod')->toArray()
+        "options" => Mage::getModel('pagarme/source_subscription_paymentmethod')->toArray()
 	));
 	$this->addColumn("amount", array(
 	    "header" => Mage::helper("pagarme")->__("Amount"),
@@ -98,17 +105,12 @@ protected function _prepareColumns()
         "type" => "number",
 	    "index" => "tid",
 	));
-	$this->addColumn("status", array(
-	    "header" => Mage::helper("pagarme")->__("Status"),
-	    "align" => "right",
-	    "index" => "status",
-        "type"  => "options",
-        "options" => Mage::getModel('pagarme/source_status')->toArray()
-	));
 	$this->addColumn("created_at", array(
 	    "header" => Mage::helper("pagarme")->__("Created At"),
 	    "align" => "right",
 	    "index" => "created_at",
+        "type" => "datetime",
+        "format" => "dd/MM/yyyy",
 	));
     /*
 	$this->addColumn("updated_at", array(
@@ -117,6 +119,14 @@ protected function _prepareColumns()
 	    "index" => "updated_at",
 	));
     */
+	$this->addColumn("order_status", array(
+	    "header" => Mage::helper("pagarme")->__("Order Status"),
+	    "align" => "right",
+	    "index" => "order_status",
+        "type"  => "options",
+        "options" => Mage::getSingleton('sales/order_config')->getStatuses()
+	));
+
     //$this->addRssList('pagarme/adminhtml_rss_rss/subscriptions', Mage::helper('pagarme')->__('RSS'));
 	//$this->addExportType('*/*/exportCsv', Mage::helper('sales')->__('CSV')); 
 	//$this->addExportType('*/*/exportExcel', Mage::helper('sales')->__('Excel'));

@@ -18,7 +18,7 @@ public function postbackAction()
 		&& $pagarme->validateFingerprint($request->getPost('id'), $request->getPost('fingerprint'))
 		&& $request->getPost('current_status') == Inovarti_Pagarme_Model_Api::TRANSACTION_STATUS_PAID)
     {
-		$orderId = Mage::helper('pagarme')->getOrderIdByTransactionId($request->getPost('id'));
+		$orderId = Mage::helper('pagarme')->getOrderIdBySubscriptionId($request->getPost('id'));
 		$order = Mage::getModel('sales/order')->load($orderId);
 		if (!$order->canInvoice())
         {
