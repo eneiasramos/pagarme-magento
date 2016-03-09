@@ -180,6 +180,7 @@ class Inovarti_Pagarme_Model_Api
 	{
 		$client = new Varien_Http_Client($url, array('timeout'	=> 30));
 		$client->setMethod($method);
+		$client->setHeaders('Accept-Encoding: deflate');
 		if ($method == Zend_Http_Client::POST) {
 			$client->setParameterPost($this->_parseArray($data));
 		} else {
