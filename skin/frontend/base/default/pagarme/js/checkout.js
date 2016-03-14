@@ -267,6 +267,15 @@ if (typeof OSCPayment !== "undefined") {
 
 } // pagarmeInitCheckout
 
+function pagarmeJSEvent()
+{
+    pagarmeInitCheckout ();
+
+    console.log('Pagarme: Ready');
+
+    pagarmeHideLoader ();
+}
+
 document.observe("dom:loaded",function(){
 
 pagarmeShowLoader ();
@@ -275,13 +284,14 @@ var pagarmeJS = document.createElement('script');
 pagarmeJS.type = "text/javascript";
 pagarmeJS.async = true;
 pagarmeJS.src = 'https://assets.pagar.me/js/pagarme.min.js';
-pagarmeJS.addEventListener('load', function(){
-    pagarmeInitCheckout ();
-
-    console.log('Pagarme: Ready');
-
-    pagarmeHideLoader ();
-}, false);
+if(pagarmeJS.attachEvent) {
+    // pagarmeJS.attachEvent('onreadystatechange', function(){
+    pagarmeJS.onreadystatechange = function(){
+        if(this.readyState === 'loaded' || this.readyState === 'complete') pagarmeJSEvent();
+    };
+} else {
+    pagarmeJS.addEventListener('load', function(){ pagarmeJSEvent(); }, false);
+}
 
 var head = document.getElementsByTagName('head')[0];
 head.appendChild(pagarmeJS);
