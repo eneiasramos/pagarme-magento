@@ -24,6 +24,14 @@
                     <show_in_store>1</show_in_store>
                     <comment><![CDATA[<a href="http://www.inovarti.com.br" target="_blank"><img title="Inovarti" alt="Inovarti" src="//www.inovarti.com.br/inovarti_logo.php"/></a></span>]]></comment>
                     <fields>
+                        <about_us>
+                            <frontend_model>pagarme/about</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>0</sort_order>
+                        </about_us>
                         <active translate="label">
                             <label>Active</label>
                             <frontend_type>select</frontend_type>
