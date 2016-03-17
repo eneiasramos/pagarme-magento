@@ -22,6 +22,7 @@ protected $_canAuthorize                = true;
 protected $_canCapture                  = true;
 protected $_canRefund                   = true;
 protected $_canUseForMultishipping 		= false;
+protected $_canManageRecurringProfiles  = false;
 
 public function assignData($data)
 {
