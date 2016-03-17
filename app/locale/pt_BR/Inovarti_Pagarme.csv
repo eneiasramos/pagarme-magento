@@ -12,7 +12,7 @@
 "Pagar.me - Credit Card","Pagar.me - Cartão de Crédito"
 "Pagar.me - Subscriptions","Pagar.me - Assinaturas"
 "Mode","Modo"
-Module,Módulo
+"Module","Módulo"
 "Test","Teste"
 "Live","Produção"
 "Api Key","Chave de API"
@@ -80,7 +80,7 @@ Module,Módulo
 "Name","Nome"
 "Days","Dias"
 "Trial Days","Dias de Teste"
-Version,Versão
+"Version","Versão"
 "Payment Methods","Métodos de Pagamento"
 "Charges","Números de Cobranças"
 "Is Active","Ativo"
