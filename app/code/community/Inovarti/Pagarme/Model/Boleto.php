@@ -22,6 +22,7 @@ class Inovarti_Pagarme_Model_Boleto extends Mage_Payment_Model_Method_Abstract
 	protected $_isGateway                   = true;
 	protected $_canUseForMultishipping 		= false;
 	protected $_isInitializeNeeded      	= true;
+	protected $_canManageRecurringProfiles  = false;
 
 	public function initialize($paymentAction, $stateObject)
     {

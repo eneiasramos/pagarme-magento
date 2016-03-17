@@ -28,7 +28,7 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
 	protected $_canCapture                  = true;
 	protected $_canRefund                   = true;
 	protected $_canUseForMultishipping 		= false;
-
+	protected $_canManageRecurringProfiles  = false;
 
 	public function assignData($data)
     {
