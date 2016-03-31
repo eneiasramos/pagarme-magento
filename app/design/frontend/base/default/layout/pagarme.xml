@@ -67,6 +67,10 @@
 		<update handle="pagarme_checkout_handle"/>
 	</checkoutsimplificado_index_index>
 
+	<firecheckout_index_index>
+		<update handle="pagarme_checkout_handle"/>
+	</firecheckout_index_index>
+
 	<!-- Pagarme Checkout Success Handle -->
 	<pagarme_checkout_success_handle>
 		<reference name="checkout.success">
