@@ -16,18 +16,18 @@
 <layout>
 	<pagarme_checkout_handle>
 		<reference name="head">
-			<action method="addCss" ifconfig="payment/pagarme_settings/active"><stylesheet>pagarme/css/styles.css</stylesheet></action>
+			<action method="addCss" ifconfig="payment/pagarme_cc/active"><stylesheet>pagarme/css/styles.css</stylesheet></action>
 		</reference>
         <reference name="after_body_start">
             <block type="core/template" name="pagarme_checkout_loader">
-                <action method="setTemplate" ifconfig="payment/pagarme_settings/active">
+                <action method="setTemplate" ifconfig="payment/pagarme_cc/active">
                     <template>pagarme/checkout/payment/loader.phtml</template>
                 </action>
             </block>
         </reference>
         <reference name="before_body_end">
             <block type="core/template" name="pagarme_checkout_js">
-                <action method="setTemplate" ifconfig="payment/pagarme_settings/active">
+                <action method="setTemplate" ifconfig="payment/pagarme_cc/active">
                     <template>pagarme/checkout/payment/js.phtml</template>
                 </action>
             </block>
