@@ -53,6 +53,16 @@
                     </subscriptions>
                 </entities>
             </pagarme_mysql4>
+            <customer>
+                <rewrite>
+                    <address>Inovarti_Pagarme_Model_Customer_Address</address>
+                </rewrite>
+            </customer>
+            <sales>
+                <rewrite>
+                    <quote_address>Inovarti_Pagarme_Model_Sales_Quote_Address</quote_address>
+                </rewrite>
+            </sales>
     	</models>
     	<resources>
             <pagarme_setup>
