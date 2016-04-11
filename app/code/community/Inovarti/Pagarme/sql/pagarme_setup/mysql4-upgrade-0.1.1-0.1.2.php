@@ -4,7 +4,7 @@
  * @author     Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-$installer = new Mage_Catalog_Model_Resource_Setup();
+$installer = new Mage_Catalog_Model_Resource_Setup('pagarme_setup');
 $installer->startSetup();
 
 if (!$installer->getAttribute(Mage_Catalog_Model_Product::ENTITY, 'pagarme_subscription_plan', 'attribute_id'))
