@@ -43,6 +43,18 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
         return $this;
     }
 
+    public function order(Varien_Object $payment, $amount)
+    {
+        $this->authorize($payment, $amount);
+
+        $originalPaymentAction = parent::getConfigPaymentAction();
+        if($originalPaymentAction == Mage_Payment_Model_Method_Abstract::ACTION_AUTHORIZE_CAPTURE)
+        {
+            $this->capture($payment, $amount);
+        }
+        return $this;
+    }
+
 	public function authorize(Varien_Object $payment, $amount)
     {
         $plans = $this->_getPlans($payment);
@@ -109,6 +121,12 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
 					->setCapture($requestType == self::REQUEST_TYPE_AUTH_CAPTURE)
 					->setCustomer($customer);
 
+                if($this->getConfigData('async'))
+                {
+                    $data->setAsync(true);
+                    $data->setPostbackUrl('pagarme/transation_creditcard/postback');
+                }
+
 				$transaction = $pagarme->charge($data);
 				break;
 			case self::REQUEST_TYPE_CAPTURE_ONLY:
@@ -144,6 +162,11 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
 
 		$payment->setTransactionAdditionalInfo(Mage_Sales_Model_Order_Payment_Transaction::RAW_DETAILS,array('status' => $transaction->getStatus()));
 
+        if($this->getConfigData('async'))
+        {
+            $payment->setIsTransactionPending(true);
+        }
+
 		return $this;
     }
 
@@ -166,6 +189,11 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
 
         return Mage::helper('pagarme')->__('Transaction failed, please try again or contact the card issuing bank.') . PHP_EOL
                . Mage::helper('pagarme')->__($result);
+    }
+
+    public function getConfigPaymentAction()
+    {
+        return $this->getConfigData('async') == '1' ? 'order' : parent::getConfigPaymentAction();
     }
 
     protected function _getPlans($payment)

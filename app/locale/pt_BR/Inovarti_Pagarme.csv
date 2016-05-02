@@ -16,6 +16,7 @@
 "Test","Teste"
 "Live","Produção"
 "Api Key","Chave de API"
+Approved by Pagarme via Creditcard postback.,Aprovado pela Pagarme através do postback de Cartão de Crédito.
 "Encryption Key","Chave de criptografia"
 "Enabled","Ativado"
 "Title","Título"
@@ -40,6 +41,7 @@
 "Transaction Details","Detalhes da Transação"
 "Barcode","Código de Barras"
 "Boleto URL","URL do Boleto"
+Canceled by Pagarme via Creditcard postback.,Cancelado pela Pagarme através do postback de Cartão de Crédito.
 "Transaction #%s | %s","Transação #%s | %s"
 "Ordering amount of %s is pending payment.","Valor ordenado de %s está pendente de pagamento."
 "Pay in full - %s","Á vista - %s"
