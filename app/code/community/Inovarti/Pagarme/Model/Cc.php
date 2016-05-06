@@ -124,7 +124,7 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
                 if($this->getConfigData('async'))
                 {
                     $data->setAsync(true);
-                    $data->setPostbackUrl('pagarme/transation_creditcard/postback');
+                    $data->setPostbackUrl(Mage::getUrl('pagarme/transaction_creditcard/postback'));
                 }
 
 				$transaction = $pagarme->charge($data);
