@@ -35,13 +35,12 @@
                     OSCForm.enablePlaceOrderButton (); // For terms agreement ...
                     if (OSCForm.validate () == true) OSCForm.placeOrder ();
                 } else if (typeof payment !== "undefined") {
-
+                    payment.save ();
+                } else {
                     var checkoutPaymentOnclickSave = "<?php echo Mage::getStoreConfig('payment/pagarme_checkout/checkout_payment_onclick_save'); ?>";
 
                     if (checkoutPaymentOnclickSave) {
                         eval(checkoutPaymentOnclickSave).save();
-                    } else {
-                        payment.save ();
                     }
                 }
             },
