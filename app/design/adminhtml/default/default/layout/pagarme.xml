@@ -26,6 +26,31 @@
         </reference>
     </pagarme_info_handle>
 
+	<pagarme_checkout_handle>
+		<reference name="head">
+			<action method="addCss"><stylesheet>pagarme/css/styles.css</stylesheet></action>
+		</reference>
+        <reference name="js">
+            <block type="core/template" name="pagarme_checkout_loader">
+                <action method="setTemplate" ifconfig="payment/pagarme_cc/active">
+                    <template>pagarme/checkout/payment/loader.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="pagarme_checkout_js">
+                <action method="setTemplate" ifconfig="payment/pagarme_cc/active">
+                    <template>pagarme/checkout/payment/js.phtml</template>
+                </action>
+            </block>
+            <block type="core/text" name="pagarme.cdn.js.checkout" ifconfig="payment/pagarme_checkout/active">
+                <action method="setText">
+                    <text><![CDATA[<script src="https://assets.pagar.me/checkout/checkout.js" type="text/javascript"></script>]]></text>
+                </action>
+            </block>
+        </reference>
+	</pagarme_checkout_handle>
+
     <pagarme_invoice_fee_handle>
         <reference name="invoice_totals">
             <block type="adminhtml/sales_order_totals_item" name="fee" template="pagarme/fee/total.phtml" />
@@ -114,5 +139,9 @@
             <block type="pagarme/adminhtml_subscriptions" name="pagarme.adminhtml.subscriptions" />
         </reference>
     </pagarme_adminhtml_subscriptions_index>
+
+    <adminhtml_sales_order_create_index>
+        <update handle="pagarme_checkout_handle" />
+    </adminhtml_sales_order_create_index>
 </layout>
 

@@ -93,6 +93,7 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
 			foreach ($transaction->getErrors() as $error) {
 				$messages[] = $error->getMessage() . '.';
 			}
+			Mage::log(implode("\n", $messages), null, 'pagarme.log');
 			Mage::throwException(implode("\n", $messages));
 		}
 
@@ -143,6 +144,7 @@ class Inovarti_Pagarme_Model_Cc extends Mage_Payment_Model_Method_Abstract
 		}
 
         if ($transaction->getStatus() == 'refused') {
+			Mage::log($this->_wrapGatewayError($transaction->getStatusReason()), null, 'pagarme.log');
             Mage::throwException($this->_wrapGatewayError($transaction->getStatusReason()));
         }
 

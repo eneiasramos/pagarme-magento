@@ -30,19 +30,14 @@ public function _getInfoData ($field)
     return $this->escapeHtml (Mage::getStoreConfig ("payment/pagarme_checkout/{$field}"));
 }
 
-public function _getQuote ()
-{
-    return Mage::getModel ('checkout/session')->getQuote ();
-}
-
 public function _getAmount ()
 {
-    return $this->_getHelper ()->formatAmount ($this->_getQuote ()->getBaseGrandTotal ());
+    return $this->_getHelper ()->formatAmount ($this->_getHelper ()->_getQuote ()->getBaseGrandTotal ());
 }
 
 public function _getAddressData ($field)
 {
-    return $this->_getQuote ()->getBillingAddress ()->getData ($field);
+    return $this->_getHelper ()->_getQuote ()->getBillingAddress ()->getData ($field);
 }
 
 public function _getStreet ($id)
@@ -54,7 +49,7 @@ public function _getStreet ($id)
 
 public function _getState ()
 {
-    $region_id = $this->_getQuote ()->getBillingAddress ()->getRegionId ();
+    $region_id = $this->_getHelper ()->_getQuote ()->getBillingAddress ()->getRegionId ();
 
     $collection = Mage::getModel ('directory/region')->getResourceCollection ()->addCountryFilter ('BR');
     $collection->getSelect ()->where ("main_table.region_id = '{$region_id}'");
@@ -66,7 +61,7 @@ public function _getState ()
 
 public function _getDocumentNumber ()
 {
-    return $this->_getHelper ()->_numberOnly ($this->_getQuote ()->getCustomer ()->getTaxvat ());
+    return $this->_getHelper ()->_numberOnly ($this->_getHelper ()->_getQuote ()->getCustomer ()->getTaxvat ());
 }
 
 public function _getTelephone ($start, $length)

@@ -58,6 +58,7 @@ class Inovarti_Pagarme_Model_Boleto extends Mage_Payment_Model_Method_Abstract
 			foreach ($transaction->getErrors() as $error) {
 				$messages[] = $error->getMessage() . '.';
 			}
+			Mage::log(implode("\n", $messages), null, 'pagarme.log');
 			Mage::throwException(implode("\n", $messages));
 		}
 

@@ -149,7 +149,7 @@ class Inovarti_Pagarme_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function getShippingAmount()
     {
-        $address = Mage::getModel('checkout/session')->getQuote()->getShippingAddress();
+        $address = $this->_getQuote()->getShippingAddress();
         if (!empty ($address))
         {
             return $address->getShippingAmount();
@@ -158,7 +158,19 @@ class Inovarti_Pagarme_Helper_Data extends Mage_Core_Helper_Abstract
     
     public function getBaseSubtotalWithDiscount ()
     {
-        return Mage::getModel('checkout/session')->getQuote()->getBaseSubtotalWithDiscount ();
+        return $this->_getQuote()->getBaseSubtotalWithDiscount ();
+    }
+
+    public function _getQuote ()
+    {
+        if (Mage::app ()->getStore ()->isAdmin ())
+        {
+            return Mage::getSingleton('adminhtml/session_quote')->getQuote ();
+        }
+        else
+        {
+            return Mage::getSingleton ('checkout/session')->getQuote ();
+        }
     }
 }
 

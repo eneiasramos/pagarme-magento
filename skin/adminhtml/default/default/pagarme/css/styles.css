@@ -3,8 +3,91 @@
  * @category   Inovarti
  * @package    Inovarti_Pagarme
  * @author     Suporte <suporte@inovarti.com.br>
+ *
+ * UPDATED:
+ *
+ * @copyright   Copyright (C) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author     Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
+
+.pagarme-payment-icons li { background: url(../images/icons.png) no-repeat; margin: 0 !important; width: 51px; height: 32px; display: inline-block; }
+.pagarme-payment-icons li span { display: none; }
+.pagarme-payment-icons li.AE { background-position: -51px 0; }
+.pagarme-payment-icons li.VI { background-position: -51px -32px; }
+.pagarme-payment-icons li.MC { background-position: -51px -64px; }
+.pagarme-payment-icons li.EL { background-position: -51px -96px; }
+.pagarme-payment-icons li.HC { background-position: -51px -128px; }
+.pagarme-payment-icons li.DC { background-position: -51px -160px; }
+.pagarme-payment-icons li.DI { background-position: -51px -192px; }
+.pagarme-payment-icons li.AU { background-position: -51px -224px; }
+.pagarme-payment-icons li.JCB { background-position: -51px -256px; }
+.pagarme-payment-icons li.boleto { background-position: -51px -288px; }
+.pagarme-payment-icons li.AE.on { background-position: 0 0; }
+.pagarme-payment-icons li.VI.on { background-position: 0 -32px; }
+.pagarme-payment-icons li.MC.on { background-position: 0 -64px; }
+.pagarme-payment-icons li.EL.on { background-position: 0 -96px; }
+.pagarme-payment-icons li.HC.on { background-position: 0 -128px; }
+.pagarme-payment-icons li.DC.on { background-position: 0 -160px; }
+.pagarme-payment-icons li.DI.on { background-position: 0 -192px; }
+.pagarme-payment-icons li.AU.on { background-position: 0 -224px; }
+.pagarme-payment-icons li.JCB.on { background-position: 0 -256px; }
+.pagarme-payment-icons li.boleto.on { background-position: 0 -288px; }
+.pagarme-cvv { position: relative; }
+.pagarme-cvv input.cvv { width: 4em !important; }
+.pagarme-cvv-tool-tip { position: absolute; display: inline-block; left: 5em; top: 0; }
+.pagarme-cvv-tool-tip:hover .pagarme-cvv-image, .pagarme-cvv-tool-tip:hover .pagarme-cvv-tool-tip-arrow { display: block; }
+.pagarme-cvv-tool-tip-arrow { display: none; position: absolute; top: -10px; left: 16px; background: url(../images/arrow_down.gif) no-repeat; width: 17px; height: 9px; z-index: 101px; }
+.pagarme-cvv-icon { cursor: pointer; }
+.pagarme-cvv-image { display: none; background: #fff; border: 1px solid #ccc; padding: 10px; position: absolute; top: -235px; z-index: 100px; }
+.pagarme-cc-expr-month { width: 68px; margin-right: 0 !important; }
+.pagarme-cc-expr-month select.month { width: 64px !important; margin-right: 0 !important; }
+.pagarme-cc-expr-year select.year { width: 72px !important; }
+#advice-validate-pagarme-cc-exp-pagarme_cc_expiration { white-space: nowrap; }
+#advice-validate-pagarme-cc-cvn-pagarme_cc_cc_cid { white-space: nowrap; }
+#pagarme-mask {
+    color: #d85909;
+    font-size: 1.1em;
+    font-weight: bold;
+    /* opacity: 0.8; */
+    position: absolute;
+    text-align: center;
+    z-index: 1200;
+}
+#pagarme-mask .loader {
+    background: none repeat scroll 0 0 #fff4e9;
+    border: 2px solid #f1af73;
+    color: #d85909;
+    font-weight: bold;
+    left: 50%;
+    margin-left: -105px;
+    padding: 15px 30px;
+    position: fixed;
+    text-align: center;
+    top: 45%;
+    width: 150px;
+    z-index: 1100;
+}
+#pagarme-overlay {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+#pagarme-cardhash-waiting {
+    background: orange;
+    color: white;
+    display: block;
+}
+#pagarme-cardhash-success {
+    background: green;
+    color: white;
+    display: block;
+}
 
 .pagarme-status { color: #eb5e00; }
 .pagarme-status.paid { color: #147C25; }
 .pagarme-transaction-view-content { padding: 14px; }
+

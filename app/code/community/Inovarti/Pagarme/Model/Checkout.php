@@ -72,6 +72,7 @@ public function refund(Varien_Object $payment, $amount)
         {
 			$messages[] = $error->getMessage() . '.';
 		}
+		Mage::log(implode("\n", $messages), null, 'pagarme.log');
 		Mage::throwException(implode("\n", $messages));
 	}
 
@@ -122,11 +123,13 @@ protected function _place($payment, $amount, $requestType)
         {
 			$messages[] = $error->getMessage() . '.';
 		}
+		Mage::log(implode("\n", $messages), null, 'pagarme.log');
 		Mage::throwException(implode("\n", $messages));
 	}
 
     if ($transaction->getStatus() == 'refused')
     {
+		Mage::log($this->_wrapGatewayError($transaction->getStatusReason()), null, 'pagarme.log');
         Mage::throwException($this->_wrapGatewayError($transaction->getStatusReason()));
     }
 
