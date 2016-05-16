@@ -62,7 +62,7 @@ class Inovarti_Pagarme_Block_Form_Cc extends Mage_Payment_Block_Form_Cc
     	}
 
     	$quote = Mage::helper('pagarme')->_getQuote();
-    	$total = Mage::helper('pagarme')->getBaseSubtotalWithDiscount () + Mage::helper ('pagarme')->getShippingAmount ();
+    	$total = Mage::helper('pagarme')->getBaseSubtotalWithDiscount () + Mage::helper ('pagarme')->getBaseShippingAmount ();
 
     	$n = floor($total / $minInstallmentValue);
     	if ($n > $maxInstallments) {

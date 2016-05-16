@@ -14,13 +14,13 @@ public function collect (Mage_Sales_Model_Quote_Address $address)
 {
     parent::collect($address);
 
-    $this->_setAmount (0);
-    $this->_setBaseAmount (0);
+    // $this->_setAmount (0);
+    // $this->_setBaseAmount (0);
 
     $items = $this->_getAddressItems($address);
     if (!count ($items)) return $this;
 
-    $quote = Mage::helper('checkout')->getQuote();
+    $quote = Mage::helper('pagarme')->_getQuote();
     $payment = $quote->getPayment()->getMethod();
 
     if ($payment == 'pagarme_cc')
@@ -30,7 +30,7 @@ public function collect (Mage_Sales_Model_Quote_Address $address)
         $interestRate = (float) Mage::getStoreConfig('payment/pagarme_cc/interest_rate');
         $freeInstallments = (int) Mage::getStoreConfig('payment/pagarme_cc/free_installments');
 
-        $total = Mage::helper('pagarme')->getBaseSubtotalWithDiscount () + Mage::helper ('pagarme')->getShippingAmount ();
+        $total = Mage::helper('pagarme')->getBaseSubtotalWithDiscount () + Mage::helper ('pagarme')->getBaseShippingAmount ();
 
         $n = floor ($total / $minInstallmentValue);
         if ($n > $maxInstallments) $n = $maxInstallments;

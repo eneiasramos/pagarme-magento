@@ -39,9 +39,9 @@
 .pagarme-cvv-tool-tip-arrow { display: none; position: absolute; top: -10px; left: 16px; background: url(../images/arrow_down.gif) no-repeat; width: 17px; height: 9px; z-index: 101px; }
 .pagarme-cvv-icon { cursor: pointer; }
 .pagarme-cvv-image { display: none; background: #fff; border: 1px solid #ccc; padding: 10px; position: absolute; top: -235px; z-index: 100px; }
-.pagarme-cc-expr-month { width: 68px; margin-right: 0 !important; }
+.pagarme-cc-expr-month { width: 68px; margin-right: 0 !important; float: left; }
 .pagarme-cc-expr-month select.month { width: 64px !important; margin-right: 0 !important; }
-.pagarme-cc-expr-year select.year { width: 72px !important; }
+.pagarme-cc-expr-year select.year { width: 72px !important; float: left; }
 #advice-validate-pagarme-cc-exp-pagarme_cc_expiration { white-space: nowrap; }
 #advice-validate-pagarme-cc-cvn-pagarme_cc_cc_cid { white-space: nowrap; }
 #pagarme-mask {

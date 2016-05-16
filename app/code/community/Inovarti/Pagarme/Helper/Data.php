@@ -147,18 +147,27 @@ class Inovarti_Pagarme_Helper_Data extends Mage_Core_Helper_Abstract
         return $result;
     }
 
-    public function getShippingAmount()
+    public function getBaseShippingAmount()
     {
         $address = $this->_getQuote()->getShippingAddress();
         if (!empty ($address))
         {
-            return $address->getShippingAmount();
+            return $address->getBaseShippingAmount();
         }
     }
     
     public function getBaseSubtotalWithDiscount ()
     {
-        return $this->_getQuote()->getBaseSubtotalWithDiscount ();
+        $totals = $this->_getQuote ()->getTotals();
+        $subtotal = $totals ['subtotal'];
+        $discount = $totals ['discount'];
+
+        $subtotal = $subtotal ? floatval ($subtotal->getValue ()) : 0;
+        $discount = $discount ? floatval ($discount->getValue ()) * -1 : 0;
+
+        // return $this->_getQuote()->getBaseSubtotalWithDiscount ();
+
+        return $subtotal - $discount;
     }
 
     public function _getQuote ()

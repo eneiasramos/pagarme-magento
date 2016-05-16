@@ -31,19 +31,8 @@
                 $('pagarme-checkout-hash').value = data ['card_hash'];
                 $('pagarme-checkout-payment-method').value = data ['payment_method'];
                 $('pagarme-checkout-installments').value = data ['installments'];
-                if (typeof OSCForm !== "undefined") {
-                    OSCForm.enablePlaceOrderButton (); // For terms agreement ...
-                    if (OSCForm.validate () == true) OSCForm.placeOrder ();
-                } else if (typeof payment !== "undefined") {
 
-                    var checkoutPaymentOnclickSave = "<?php echo Mage::getStoreConfig('payment/pagarme_checkout/checkout_payment_onclick_save'); ?>";
-
-                    if (checkoutPaymentOnclickSave) {
-                        eval(checkoutPaymentOnclickSave).save();
-                    } else {
-                        payment.save ();
-                    }
-                }
+                if (editForm.validate () == true) editForm.submit ();
             },
         });
 
