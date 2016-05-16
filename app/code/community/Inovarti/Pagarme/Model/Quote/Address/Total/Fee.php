@@ -23,7 +23,7 @@ public function collect (Mage_Sales_Model_Quote_Address $address)
     $quote = Mage::helper('pagarme')->_getQuote();
     $payment = $quote->getPayment()->getMethod();
 
-    if ($payment == 'pagarme_cc')
+    if (!strcmp ($payment, 'pagarme_cc') || !strcmp ($payment, 'pagarme_checkout'))
     {
         $maxInstallments = (int) Mage::getStoreConfig('payment/pagarme_cc/max_installments');
         $minInstallmentValue = (float) Mage::getStoreConfig('payment/pagarme_cc/min_installment_value');
@@ -48,6 +48,9 @@ public function collect (Mage_Sales_Model_Quote_Address $address)
         if (isset ($post ['payment']['installments']))
         {
             $payment_installment = $post ['payment']['installments'];
+        } else if (isset ($post ['payment']['pagarme_checkout_installments']))
+        {
+            $payment_installment = $post ['payment']['pagarme_checkout_installments'];
         }
 
         $installments = Mage::getModel('pagarme/api')->calculateInstallmentsAmount($data);
