@@ -25,7 +25,7 @@
                 </action>
             </block>
         </reference>
-        <reference name="before_body_end">
+        <reference name="after_body_start">
             <block type="core/template" name="pagarme_checkout_js">
                 <action method="setTemplate" ifconfig="payment/pagarme_cc/active">
                     <template>pagarme/checkout/payment/js.phtml</template>
