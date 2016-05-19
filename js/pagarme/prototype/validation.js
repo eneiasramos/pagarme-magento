@@ -19,7 +19,7 @@ Validation.creditCartTypes = $H({
 
 Validation.add('validate-pagarme-cc-number', 'Please enter a valid credit card number.', function(v, elm) {
 
-    if (pagarmeIsValidCardNumber(v)) {
+    if (pagarmeIsValidCardNumber(v) && Validation.get('validate-cc-type').test(v, elm)) {
         return true;
     }
 
