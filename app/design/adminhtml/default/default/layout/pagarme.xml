@@ -30,14 +30,14 @@
 		<reference name="head">
 			<action method="addCss"><stylesheet>pagarme/css/styles.css</stylesheet></action>
 		</reference>
-        <reference name="js">
+        <reference name="notifications">
             <block type="core/template" name="pagarme_checkout_loader">
                 <action method="setTemplate" ifconfig="payment/pagarme_cc/active">
                     <template>pagarme/checkout/payment/loader.phtml</template>
                 </action>
             </block>
         </reference>
-        <reference name="before_body_end">
+        <reference name="notifications">
             <block type="core/template" name="pagarme_checkout_js">
                 <action method="setTemplate" ifconfig="payment/pagarme_cc/active">
                     <template>pagarme/checkout/payment/js.phtml</template>

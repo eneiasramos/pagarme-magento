@@ -29,28 +29,42 @@ function pagarmeHideLoader ()
     $("pagarme-overlay").hide ();
 }
 
-function pagarmeDisableAll(element)
+function pagarmeValidateFields(code)
 {
-    $$(element).each(function(obj){
-        $(obj).disable();
-        $(obj).setStyle({background: 'red'});
+    pagarmeCardNumber          = (document.getElementById( code + '_cc_number' ).value);
+    pagarmeCardInstallments    = (document.getElementById( code + '_installments' ).value);
+    pagarmeCardOwner           = (document.getElementById( code + '_cc_owner' ).value);
+    pagarmeCardExpiration      = (document.getElementById( code + '_expiration' ).value);
+    pagarmeCardExpirationYr    = (document.getElementById( code + '_expiration_yr' ).value);
+    pagarmeCardCid             = (document.getElementById( code + '_cc_cid' ).value);
+
+    if (!pagarmeCardNumber || !pagarmeCardInstallments || !pagarmeCardOwner || !pagarmeCardExpiration
+        || !pagarmeCardExpirationYr || !pagarmeCardCid) {
+        return false;
+    }
+
+    PagarMe.encryption_key = pagarme_encryption_key;
+    var pagarmeCreditCard = new PagarMe.creditCard();
+
+    pagarmeCreditCard.cardHolderName       = pagarmeCardOwner;
+    pagarmeCreditCard.cardExpirationMonth  = pagarmeCardExpiration;
+    pagarmeCreditCard.cardExpirationYear   = pagarmeCardExpirationYr;
+    pagarmeCreditCard.cardNumber           = pagarmeCardNumber;
+    pagarmeCreditCard.cardCVV              = pagarmeCardCid;
+
+    var fieldErrors = pagarmeCreditCard.fieldErrors();
+    var hasErrors = false;
+
+    for(var field in fieldErrors) { hasErrors = true; break; }
+
+    if (hasErrors) {
+        console.log(fieldErrors);
+        return false;
+    }
+
+    pagarmeCreditCard.generateHash(function(cardHash) {
+        $(code + "_pagarme_card_hash").setValue(cardHash);
     });
-}
-
-function pagarmeCreditCard()
-{
-    var creditCard = new PagarMe.creditCard();
-    creditCard.cardHolderName = $(OSCPayment.currentMethod+'_cc_owner').value;
-    creditCard.cardExpirationMonth = $(OSCPayment.currentMethod+'_expiration').value;
-    creditCard.cardExpirationYear = $(OSCPayment.currentMethod+'_expiration_yr').value;
-    creditCard.cardNumber = $(OSCPayment.currentMethod+'_cc_number').value;
-    creditCard.cardCVV = $(OSCPayment.currentMethod+'_cc_cid').value;
-
-    if(!creditCard.cardHolderName.length
-        || !creditCard.cardExpirationMonth.length || !creditCard.cardExpirationYear.length
-        || !creditCard.cardNumber.length || !creditCard.cardCVV.length) return;
-
-    return creditCard;
 }
 
 function pagarmeInitCheckout()
