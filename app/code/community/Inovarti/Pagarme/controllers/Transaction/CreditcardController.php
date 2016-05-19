@@ -33,6 +33,7 @@ public function postbackAction()
 
 		    $invoice = Mage::getModel('sales/service_order', $order)
 			    ->prepareInvoice()
+			    ->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_OFFLINE)
 			    ->register()
 			    ->pay();
 
